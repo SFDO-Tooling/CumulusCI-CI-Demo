@@ -1,7 +1,7 @@
 name: Main Branch
 on:
   push:
-    branch:
+    branches:
      - master
 env:
     CUMULUSCI_KEYCHAIN_CLASS: cumulusci.core.keychain.EnvironmentProjectKeychain
