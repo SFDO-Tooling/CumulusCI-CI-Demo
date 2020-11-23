@@ -1,0 +1,25 @@
+minimum_cumulusci_version: '3.23.0'
+project:
+    name: cci-ci-demo
+    package:
+        name: CumulusCI CI Demo
+        namespace: cci_ci_demo
+        api_version: '50.0'
+    git:
+    source_format: sfdx
+
+tasks:
+    robot:
+        options:
+            suites: robot/cci-ci-demo/tests
+            options:
+                outputdir: robot/cci-ci-demo/results
+
+    robot_testdoc:
+        options:
+            path: robot/cci-ci-demo/tests
+            output: robot/cci-ci-demo/doc/cci-ci-demo_tests.html
+
+    run_tests:
+        options:
+            required_org_code_coverage_percent: 100
