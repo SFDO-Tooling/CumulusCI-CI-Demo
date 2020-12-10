@@ -1,9 +1,8 @@
 name: Package Tests
 on:
-  workflow_dispatch
-  # push:
-  #   release:
-  #    - created
+  push:
+    release:
+     - created
 env:
     CUMULUSCI_KEYCHAIN_CLASS: cumulusci.core.keychain.EnvironmentProjectKeychain
     CUMULUSCI_SERVICE_github: ${{ secrets.CUMULUSCI_SERVICE_github }}
