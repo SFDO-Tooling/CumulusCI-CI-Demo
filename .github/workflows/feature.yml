@@ -1,5 +1,7 @@
 name: Feature Test
-on: [push]
+on: 
+  workflow_dispatch
+  #[push]
 env:
   CUMULUSCI_KEYCHAIN_CLASS: cumulusci.core.keychain.EnvironmentProjectKeychain
   CUMULUSCI_SERVICE_github: ${{ secrets.CUMULUSCI_SERVICE_github }}
