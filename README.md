@@ -1,12 +1,17 @@
-# cci-ci-demo
+# CumulusCI CI Demo
 
-Add a brief description of this project here, in Markdown format.
-It will be shown on the main page of the project's GitHub repository.
+This repository contains an example of how to implement a continuous integration pipeline for a managed package project using GitHub Actions and CumulusCI.
 
-## Development
+## Using this Template
 
-To work on this project in a scratch org:
+This repository can easily be forked and used as a template for your own Salesforce project.
 
-1. [Set up CumulusCI](https://cumulusci.readthedocs.io/en/latest/tutorial.html)
-2. Run `cci flow run dev_org --org dev` to deploy this project.
-3. Run `cci org browser dev` to open the org in your browser.
+You will need to add the following secrets to your projects repository:
+
+1) CUMULUSCI_SERVICE_github - A GitHub personal access token so that CumulusCI can access the GitHub API.
+
+2) SFDX_AUTH_URL - The `Sfdx Auth Url` listed when running `sfdx force:org:display --verbose -u username`
+
+3) SFDX_CLIENT_ID - The client id for your connnected app.
+
+4) SFDX_HUB_KEY - Set to the private key associated with your connected app (the contents of your `server.key` file).
