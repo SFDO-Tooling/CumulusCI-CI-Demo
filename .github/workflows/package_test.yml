@@ -13,7 +13,6 @@ jobs:
   beta_test:
     name: "Beta Test"
     runs-on: ubuntu-latest
-    needs: release_beta
     steps:
       - uses: actions/checkout@v2
       - name: Install sfdx
