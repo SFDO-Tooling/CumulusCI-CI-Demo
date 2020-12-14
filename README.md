@@ -15,3 +15,12 @@ You will need to add the following secrets to your projects repository:
 3) SFDX_CLIENT_ID - The client id for your connnected app.
 
 4) SFDX_HUB_KEY - Set to the private key associated with your connected app (the contents of your `server.key` file).
+
+You also need to set the value for the `CUMULUSCI_ORG_packaging` environment variable in workflows `main.yml`.
+It should have the following structure:
+```
+{
+    "username": first.last@something.com,
+    "instance_url": "https://something.my.salesforce.com"
+}
+```
