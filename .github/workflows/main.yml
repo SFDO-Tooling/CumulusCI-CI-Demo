@@ -32,10 +32,6 @@ jobs:
           pip install cumulusci
       - run: |
           cci flow run ci_master --org packaging
-      - name: Show Error Info
-        if: ${{ always() }}
-        run: |
-          cci error info
   release_beta:
     name: "Upload Managed Beta"
     runs-on: ubuntu-latest
