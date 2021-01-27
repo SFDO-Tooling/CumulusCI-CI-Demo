@@ -5,8 +5,10 @@ project:
         name: CumulusCI CI Demo
         namespace: cci_ci_demo
         api_version: '50.0'
-    git:
     source_format: sfdx
+    git:
+        default_branch: main
+
 
 tasks:
     robot:
