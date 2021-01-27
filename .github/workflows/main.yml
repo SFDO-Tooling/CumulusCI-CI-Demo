@@ -1,8 +1,5 @@
 name: Main Branch
 on:
-  workflow_dispatch:
-    branches:
-      - master
   push:
     branches:
       - master
