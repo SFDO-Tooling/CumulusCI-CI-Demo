@@ -59,7 +59,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: robot
-          path: robot/CumulusCI-Test/results
+          path: robot/cci-ci-demo/results
       - name: Delete Scratch Org
         if: ${{ always() }}
         run: |
