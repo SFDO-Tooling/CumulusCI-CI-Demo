@@ -1,7 +1,5 @@
 name: Feature Test
-on: 
-  workflow_dispatch
-  #[push]
+on: [push]
 env:
   CUMULUSCI_KEYCHAIN_CLASS: cumulusci.core.keychain.EnvironmentProjectKeychain
   CUMULUSCI_SERVICE_github: ${{ secrets.CUMULUSCI_SERVICE_github }}
@@ -61,7 +59,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: robot
-          path: robot/CumulusCI-Test/results
+          path: robot/cci-ci-demo/results
       - name: Delete Scratch Org
         if: ${{ always() }}
         run: |
