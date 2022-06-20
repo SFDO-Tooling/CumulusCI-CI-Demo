@@ -10,7 +10,7 @@ env:
 jobs:
   beta_test:
     name: "Beta Test"
-    runs-on: ubuntu-latest
+    runs-on: sfdc-ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Install sfdx
