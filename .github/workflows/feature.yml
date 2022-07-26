@@ -4,8 +4,9 @@ on:
     branches:
       - feature/**
       - main
+
 env:
-  CUMULUSCI_KEYCHAIN_CLASS: cumulusci.core.keychain.EnvironmentProjectKeychain
+  CUMULUSCI_KEY: ${{ secrets.CUMULUSCI_KEY }}
   CUMULUSCI_SERVICE_github: ${{ secrets.CUMULUSCI_SERVICE_github }}
 jobs:
   unit_tests:
@@ -15,7 +16,7 @@ jobs:
       - run: | 
             echo "Action running on ${{ runner.os }}"
             echo "Checkout ${{ github.ref }} from ${{ github.repository }}."
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install sfdx
         run: |
           mkdir sfdx
@@ -33,8 +34,7 @@ jobs:
           pip install cumulusci
       - name: Build Org and Execute Tests
         run: |
-          cci flow run ci_feature --org dev --debug
-          cci error info
+          cci flow run ci_feature --org dev
       - name: Delete Scratch Org
         if: ${{ always() }}
         run: |
