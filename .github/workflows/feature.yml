@@ -11,14 +11,13 @@ jobs:
   unit_tests:
     name: "Run Apex Tests"
     runs-on: ubuntu-latest
-    steps:
+    steps:    
+      - run: echo "Action running on ${{ runner.os }}"
+      - run: echo "Checkout ${{ github.ref }} from ${{ github.repository }}."
       - uses: actions/checkout@v2
       - name: Install sfdx
         run: |
-          mkdir sfdx
-          wget -qO- https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz | tar xJ -C sfdx --strip-components 1
-          ./sfdx/install
-          sfdx update
+          npm install sfdx-cli --global
           echo ${{ secrets.SFDX_AUTH_URL }} > sfdx_auth
           sfdx auth:sfdxurl:store -f sfdx_auth -d
       - name: Set up Python
