@@ -1,11 +1,11 @@
-name: Formatting
+name: Code Quality Checks
 on: 
   push:
     branches:
       - feature/**
       - main
 jobs:
-  CodeChecks:
+  prettier-code-formatting:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -21,6 +21,6 @@ jobs:
       - name: Install Packages
         run: |
           npm install
-      - name: Run pettier:verify to enforce code formatting
+      - name: Run pettier:check to enforce code formatting
         run: |
-          npm run prettier:verify
+          npm run prettier:check
