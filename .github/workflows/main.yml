@@ -1,10 +1,10 @@
 name: Main Branch
 on:
-  workflow_run:
-    workflows: ["Feature Test"]
-    branches: [main]
-    types:
-      - completed
+    workflow_run:
+        workflows: ["Feature Test"]
+        branches: [main]
+        types:
+            - completed
 env:
     CUMULUSCI_KEYCHAIN_CLASS: cumulusci.core.keychain.EnvironmentProjectKeychain
     CUMULUSCI_SERVICE_github: ${{ secrets.CUMULUSCI_SERVICE_github }}
@@ -12,44 +12,44 @@ env:
     SFDX_CLIENT_ID: ${{ secrets.SFDX_CLIENT_ID }}
     SFDX_HUB_KEY: ${{ secrets.SFDX_HUB_KEY }}
 jobs:
-  deploy_packaging:
-    name: "Deploy to Packaging"
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install sfdx
-        run: |
-          mkdir sfdx
-          wget -qO- https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz | tar xJ -C sfdx --strip-components 1
-          ./sfdx/install
-      - name: Set up Python
-        uses: actions/setup-python@v1
-        with:
-          python-version: "3.8"
-      - name: Install CumulusCI
-        run: |
-          python -m pip install -U pip
-          pip install cumulusci
-      - run: |
-          cci flow run ci_master --org packaging
-  release_beta:
-    name: "Upload Managed Beta"
-    runs-on: ubuntu-latest
-    needs: deploy_packaging
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install sfdx
-        run: |
-          mkdir sfdx
-          wget -qO- https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz | tar xJ -C sfdx --strip-components 1
-          ./sfdx/install
-      - name: Set up Python
-        uses: actions/setup-python@v1
-        with:
-          python-version: "3.8"
-      - name: Install CumulusCI
-        run: |
-          python -m pip install -U pip
-          pip install cumulusci
-      - run: |
-          cci flow run release_beta --org packaging
+    deploy_packaging:
+        name: "Deploy to Packaging"
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Install sfdx
+              run: |
+                  mkdir sfdx
+                  wget -qO- https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz | tar xJ -C sfdx --strip-components 1
+                  ./sfdx/install
+            - name: Set up Python
+              uses: actions/setup-python@v1
+              with:
+                  python-version: "3.8"
+            - name: Install CumulusCI
+              run: |
+                  python -m pip install -U pip
+                  pip install cumulusci
+            - run: |
+                  cci flow run ci_master --org packaging
+    release_beta:
+        name: "Upload Managed Beta"
+        runs-on: ubuntu-latest
+        needs: deploy_packaging
+        steps:
+            - uses: actions/checkout@v2
+            - name: Install sfdx
+              run: |
+                  mkdir sfdx
+                  wget -qO- https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz | tar xJ -C sfdx --strip-components 1
+                  ./sfdx/install
+            - name: Set up Python
+              uses: actions/setup-python@v1
+              with:
+                  python-version: "3.8"
+            - name: Install CumulusCI
+              run: |
+                  python -m pip install -U pip
+                  pip install cumulusci
+            - run: |
+                  cci flow run release_beta --org packaging

@@ -1,26 +1,26 @@
 name: Code Quality Checks
-on: 
-  push:
-    branches:
-      - feature/**
-      - main
+on:
+    push:
+        branches:
+            - feature/**
+            - main
 jobs:
-  prettier-code-formatting:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-      - name: Determine Node Version
-        id: node-version
-        run: |
-          echo "::set-output name=ver::$(node --version)"
-      - uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-${{ steps.node-version.outputs.ver }}-${{ hashFiles('package.json', 'package-lock.json') }}
-      - name: Install Packages
-        run: |
-          npm install
-      - name: Run pettier:check to enforce code formatting
-        run: |
-          npm run prettier:check
+    prettier-code-formatting:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+            - name: Determine Node Version
+              id: node-version
+              run: |
+                  echo "::set-output name=ver::$(node --version)"
+            - uses: actions/cache@v2
+              with:
+                  path: node_modules
+                  key: ${{ runner.os }}-${{ steps.node-version.outputs.ver }}-${{ hashFiles('package.json', 'package-lock.json') }}
+            - name: Install Packages
+              run: |
+                  npm install
+            - name: Run pettier:check to enforce code formatting
+              run: |
+                  npm run prettier:check

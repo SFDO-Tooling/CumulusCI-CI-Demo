@@ -31,15 +31,15 @@ The workflows differ in the events that trigger them, as well as, the specific C
 `.github/workflows/feature.yml`
 
 #### When
-This  workflow runs on *all* commits to *any* branch in the repository.  
+
+This workflow runs on _all_ commits to _any_ branch in the repository.
 
 #### What
+
 This workflow does two things:
 
 1. Runs the `ci_feature` flow against a `dev` org. This flow deploys (unmanaged) metadata in the repository to an org and runs Apex tests.
 2. Runs the `robot` task against a `dev` org. This task executes all robot tests located under `robot/cci-ci-demo/tests/` against a `qa_org`.
-
-
 
 ### Main
 
@@ -48,17 +48,17 @@ This workflow does two things:
 `.github/workflows/main.yml`
 
 #### When
+
 This workflow runs after the "Feature Test" workflow completes successfully against the `main` branch.
 
 #### What
+
 This workflow does two things:
 
 1. Deploys the metadata in the repository to the packaging org via the `ci_master` flow.
 2. Uploads a managed beta release via the `release_beta` flow.
 
 Both of these flows are run against the packaging org.
-
-
 
 ### Packaging Test
 
@@ -67,14 +67,14 @@ Both of these flows are run against the packaging org.
 `.github/workflows/package_test.yml`
 
 #### When
+
 This workflow runs after a new release tag is created in GitHub. (Tags are created by the prior workflow via the `release_beta` flow.)
 
 #### What
+
 This workflow does one thing:
 
 1. Runs the `ci_beta` flow to install the latest Beta Release (created by the prior workflow) in a `beta` org and run Apex tests.
-
-
 
 ## Using this Template
 
@@ -82,9 +82,9 @@ This repository can easily be forked and used as a template for your own Salesfo
 
 You will need to add the following secrets to your projects repository:
 
-1. `CUMULUSCI_SERVICE_github` - This is so that CumulusCI can access the GitHub API to do things like aggregate release notes, and automerge commits made to `main` into `feature/` branches.  Set this secret with the following value: `{"username": "github_username", "token":"github_personal_access_token","email":"email_address"}`
+1. `CUMULUSCI_SERVICE_github` - This is so that CumulusCI can access the GitHub API to do things like aggregate release notes, and automerge commits made to `main` into `feature/` branches. Set this secret with the following value: `{"username": "github_username", "token":"github_personal_access_token","email":"email_address"}`
 
-2. `SFDX_AUTH_URL` - The `Sfdx Auth Url` listed when running `sfdx force:org:display --verbose -u <username>` against your dev hub org. 
+2. `SFDX_AUTH_URL` - The `Sfdx Auth Url` listed when running `sfdx force:org:display --verbose -u <username>` against your dev hub org.
 
 3. `SFDX_CLIENT_ID` - The client id for your connnected app in the packaging org.
 
@@ -92,6 +92,7 @@ You will need to add the following secrets to your projects repository:
 
 You also need to set the value for the `CUMULUSCI_ORG_packaging` environment variable in workflows `main.yml`.
 It should have the following structure:
+
 ```
 {
     "username": "first.last@something.com",

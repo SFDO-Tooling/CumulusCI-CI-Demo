@@ -1,14 +1,13 @@
-minimum_cumulusci_version: '3.23.0'
+minimum_cumulusci_version: "3.23.0"
 project:
     name: cci-ci-demo
     package:
         name: CumulusCI CI Demo
         namespace: cci_ci_demo
-        api_version: '50.0'
+        api_version: "50.0"
     source_format: sfdx
     git:
         default_branch: main
-
 
 tasks:
     robot:
