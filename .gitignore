@@ -21,3 +21,6 @@ robot/cci-ci-demo/results/
 
 # Misc
 .DS_Store
+
+# Node
+/node_modules
