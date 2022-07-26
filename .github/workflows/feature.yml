@@ -33,7 +33,7 @@ jobs:
           pip install cumulusci
       - name: Build Org and Execute Tests
         run: |
-          cci flow run ci_feature --org dev
+          cci flow run ci_feature --org dev --debug
           cci error info
       - name: Delete Scratch Org
         if: ${{ always() }}
