@@ -29,7 +29,7 @@ jobs:
             - name: Install SFDX
               run: |
                   npm install sfdx-cli --global
-            - name: Authenticate SFDX 
+            - name: Authenticate SFDX
               run: |
                   echo ${{ secrets.SFDX_AUTH_URL }} > sfdx_auth
                   sfdx auth:sfdxurl:store -f sfdx_auth -d
