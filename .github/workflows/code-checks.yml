@@ -5,7 +5,7 @@ on:
       - feature/**
       - main
 jobs:
-  lint:
+  CodeChecks:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -21,6 +21,6 @@ jobs:
       - name: Install Packages
         run: |
           npm install
-      - name: prettier
+      - name: Run pettier:verify to enforce code formatting
         run: |
           npm run prettier:verify
