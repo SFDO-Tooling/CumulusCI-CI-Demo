@@ -17,13 +17,18 @@ jobs:
                   echo "Action running on ${{ runner.os }}"
                   echo "Checkout ${{ github.ref }} from ${{ github.repository }}."
             - uses: actions/checkout@v3
-            - name: Install sfdx
+            - uses: actions/setup-node@v3
+            - name: Determine Node Version
+              id: node-version
               run: |
-                  mkdir sfdx
-                  wget -qO- https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz | tar xJ -C sfdx --strip-components 1
-                  ./sfdx/install
-                  echo ${{ secrets.SFDX_AUTH_URL }} > sfdx_auth
-                  sfdx auth:sfdxurl:store -f sfdx_auth -d
+                  echo "::set-output name=ver::$(node --version)"
+            - uses: actions/cache@v2
+              with:
+                  path: node_modules
+                  key: ${{ runner.os }}-${{ steps.node-version.outputs.ver }}-${{ hashFiles('package.json', 'package-lock.json') }}
+            - name: Install SFDX
+              run: |
+                  npm install sfdx-cli --global
             - name: Set up Python
               uses: actions/setup-python@v4
               with:
@@ -43,7 +48,7 @@ jobs:
         name: "Run Robot Framework Tests"
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v2
+            - uses: actions/checkout@v3
             - name: Install sfdx
               run: |
                   mkdir sfdx
