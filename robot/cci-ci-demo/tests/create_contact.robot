@@ -20,25 +20,6 @@ Via API
     &{contact} =          Salesforce Get  Contact  ${contact_id}
     Validate Contact      ${contact_id}  ${first_name}  ${last_name}
 
-Via UI
-    ${first_name} =       Get fake data  first_name
-    ${last_name} =        Get fake data  last_name
-
-    Go to page            Home  Contact
-    Click Object Button   New
-    Wait for modal        New  Contact
-
-    Populate Form
-    ...                   First Name=${first_name}
-    ...                   Last Name=${last_name}
-    Click Modal Button    Save
-
-    Wait Until Modal Is Closed
-
-    ${contact_id} =       Get Current Record Id
-    Store Session Record  Contact  ${contact_id}
-    Validate Contact      ${contact_id}  ${first_name}  ${last_name}
-
 
 *** Keywords ***
 

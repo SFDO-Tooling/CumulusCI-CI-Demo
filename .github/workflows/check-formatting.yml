@@ -1,0 +1,26 @@
+name: Formatting
+on: 
+  push:
+    branches:
+      - feature/**
+      - main
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - name: Determine Node Version
+        id: node-version
+        run: |
+          echo "::set-output name=ver::$(node --version)"
+      - uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ steps.node-version.outputs.ver }}-${{ hashFiles('package.json', 'package-lock.json') }}
+      - name: Install Packages
+        run: |
+          npm install
+      - name: prettier
+        run: |
+          npm run prettier:verify
