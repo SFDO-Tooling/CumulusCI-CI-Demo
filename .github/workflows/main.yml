@@ -14,7 +14,7 @@ env:
 jobs:
   deploy_packaging:
     name: "Deploy to Packaging"
-    runs-on: sfdc-ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Install sfdx
@@ -34,7 +34,7 @@ jobs:
           cci flow run ci_master --org packaging
   release_beta:
     name: "Upload Managed Beta"
-    runs-on: sfdc-ubuntu-latest
+    runs-on: ubuntu-latest
     needs: deploy_packaging
     steps:
       - uses: actions/checkout@v2
