@@ -20,3 +20,13 @@ tasks:
         options:
             path: robot/cci-ci-demo/tests
             output: robot/cci-ci-demo/doc/cci-ci-demo_tests.html
+
+plans:
+    install:
+        slug: cumuluscidemo
+        title: Install Demo from Template
+        tier: primary
+        description: This is a demo plan only.
+        steps:
+            1:
+                flow: dev_org
