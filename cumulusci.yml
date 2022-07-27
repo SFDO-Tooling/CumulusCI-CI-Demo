@@ -7,6 +7,7 @@ project:
         api_version: "50.0"
     source_format: sfdx
     git:
+        repo_url: https://github.com/Szandor72/CumulusCI-CI-Demo/
         default_branch: main
 
 tasks:
