@@ -18,15 +18,15 @@ jobs:
               with:
                   path: node_modules
                   key: ${{ runner.os }}-${{ steps.node-version.outputs.ver }}-${{ hashFiles('package.json', 'package-lock.json') }}
-            - name: Install Packages
+            - name: Install Node Tooling Package
               run: |
                   npm install
             - name: Run pettier:check to enforce code formatting
               run: |
                   npm run prettier:check
-        pmd-code-analysis:        
-            steps:
-            runs-on: ubuntu-latest
+    pmd-code-analysis:        
+        runs-on: ubuntu-latest
+        steps:
             - uses: sfdx-actions/setup-pmd@v1
-            - name: run-pmd
+            - name: Static Code Quality and Best Practices Checks provided by PMD
                 run: pmd -d ./force-app/main/default/classes -R ./pmd/ruleset.xml -f text
