@@ -29,4 +29,4 @@ jobs:
         steps:
             - uses: sfdx-actions/setup-pmd@v1
             - name: Static Code Quality and Best Practices Checks provided by PMD
-                run: pmd -d ./force-app/main/default/classes -R ./pmd/ruleset.xml -f text
+              run: pmd -d ./force-app/main/default/classes -R ./pmd/ruleset.xml -f text
