@@ -12,4 +12,10 @@ private class Class_TEST {
         System.assertEquals(1 + 1, 2, 'We broke math');
         System.assertEquals(1 + 3, 4, 'We broke math again');
     }
+
+    @isTest
+    private static void runTest2() {
+        // No assert
+        System.assertEquals(1 + 1, 2);
+    }
 }
