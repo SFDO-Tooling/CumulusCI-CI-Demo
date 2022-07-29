@@ -15,7 +15,6 @@ private class Class_TEST {
 
     @isTest
     private static void runTest2() {
-        // No assert
-        System.assertEquals(1 + 1, 2);
+        System.assertEquals(1 + 1, 2, 'We broke math');
     }
 }
