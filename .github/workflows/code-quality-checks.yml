@@ -35,4 +35,4 @@ jobs:
                   unzip pmd-bin-$PMD_VERSION.zip -d ~
                   mv ~/pmd-bin-$PMD_VERSION ~/pmd
                   ~/pmd/bin/run.sh pmd --version
-                  ~/pmd/bin/run.sh pmd ./force-app/main/default/classes -R ./pmd/ruleset.xml -f text
+                  ~/pmd/bin/run.sh pmd -d ./force-app/main/default/classes -R ./pmd/ruleset.xml -f text
