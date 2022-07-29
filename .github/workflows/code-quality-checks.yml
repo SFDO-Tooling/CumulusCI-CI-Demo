@@ -24,10 +24,20 @@ jobs:
             - name: Run pettier:check to enforce code formatting
               run: |
                   npm run prettier:check
-    pmd-code-analysis:        
+    pmd-code-analysis:
         runs-on: ubuntu-latest
         steps:
             - uses: sfdx-actions/setup-pmd@v1
             - uses: actions/checkout@v3
             - name: Static Code Quality and Best Practices Checks provided by PMD
-              run: pmd -d ./force-app/main/default/classes -R ./pmd/ruleset.xml -f text
+            - name: "Install PMD"
+              run: |
+                  PMD_VERSION=`cat pmd/pmd-version.txt`
+                  wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F$PMD_VERSION/pmd-bin-$PMD_VERSION.zip
+                  unzip pmd-bin-$PMD_VERSION.zip -d ~
+                  mv ~/pmd-bin-$PMD_VERSION ~/pmd
+                  ~/pmd/bin/run.sh pmd --version
+            # Run PMD scan
+            - name: "Run PMD scan"
+              run: |
+                  ~/pmd/bin/run.sh pmd ./force-app/main/default/classes -R ./pmd/ruleset.xml -f text
