@@ -24,3 +24,9 @@ jobs:
             - name: Run pettier:check to enforce code formatting
               run: |
                   npm run prettier:check
+        pmd-code-analysis:        
+            steps:
+            runs-on: ubuntu-latest
+            - uses: sfdx-actions/setup-pmd@v1
+            - name: run-pmd
+                run: pmd -d ./force-app/main/default/classes -R ./pmd/ruleset.xml -f text
