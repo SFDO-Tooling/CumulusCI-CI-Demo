@@ -22,6 +22,10 @@ tasks:
             path: robot/cci-ci-demo/tests
             output: robot/cci-ci-demo/doc/cci-ci-demo_tests.html
 
+    logMessage:
+        options:
+            line: Log a message
+
 plans:
     install:
         slug: cumuluscidemo
@@ -30,4 +34,4 @@ plans:
         description: This is a demo plan only.
         steps:
             1:
-                flow: dev_org
+                task: logMessage
