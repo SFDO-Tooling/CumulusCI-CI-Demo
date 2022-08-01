@@ -30,7 +30,6 @@ plans:
         description: This is a demo plan only.
         steps:
             1:
-                task:
-                    log:
-                        options:
-                            line: Log this message
+                task: log
+                options:
+                    line: Log this message
