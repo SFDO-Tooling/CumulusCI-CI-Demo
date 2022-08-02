@@ -7,7 +7,7 @@ project:
         api_version: "50.0"
     source_format: sfdx
     git:
-        repo_url: https://github.com/Szandor72/CumulusCI-CI-Demo/
+        repo_url: https://github.com/Szandor72/CumulusCI-CI-Demo
         default_branch: main
 
 tasks:
@@ -24,7 +24,7 @@ tasks:
 
 plans:
     install:
-        slug: cumuluscidemo
+        slug: install
         title: Install Demo from Template
         tier: primary
         description: This is a demo plan only.
