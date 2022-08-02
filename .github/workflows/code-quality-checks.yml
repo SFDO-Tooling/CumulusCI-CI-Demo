@@ -10,6 +10,7 @@ jobs:
         steps:
             - uses: actions/checkout@v3
             - uses: actions/setup-node@v3
+
             - name: Cache node modules
               id: cache-nodemodules
               uses: actions/cache@v2
@@ -28,6 +29,7 @@ jobs:
               if: steps.cache-nodemodules.outputs.cache-hit != 'true'
               run: |
                   npm ci
+
             - name: Run pettier:check to enforce code formatting
               run: |
                   npm run prettier:check
@@ -36,6 +38,7 @@ jobs:
         steps:
             - uses: actions/checkout@v3
             - uses: actions/setup-node@v3
+
             - name: Cache node modules
               id: cache-nodemodules
               uses: actions/cache@v2
@@ -54,6 +57,7 @@ jobs:
               if: steps.cache-nodemodules.outputs.cache-hit != 'true'
               run: |
                   npm ci
+
             - name: Run eslint
               run: |
                   npm run lint
@@ -62,6 +66,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
+
             - name: "Static Code Quality and Best Practices Checks provided by PMD"
               run: |
                   PMD_VERSION=`cat pmd/pmd-version.txt`
@@ -69,6 +74,7 @@ jobs:
                   unzip pmd-bin-$PMD_VERSION.zip -d ~
                   mv ~/pmd-bin-$PMD_VERSION ~/pmd
                   ~/pmd/bin/run.sh pmd --version
+
             - name: "Run Checks and fail Build"
               run: |
                   ~/pmd/bin/run.sh pmd -d ./force-app/main/default/classes -R ./pmd/ruleset.xml -f text
