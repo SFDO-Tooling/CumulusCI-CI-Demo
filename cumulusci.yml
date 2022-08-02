@@ -10,6 +10,17 @@ project:
         repo_url: https://github.com/Szandor72/CumulusCI-CI-Demo
         default_branch: main
 
+flows:
+    release_beta:
+        # TODO: make release notes and github tags work without package upload
+        steps:
+            1:
+                task: None
+            2:
+                task: None
+            3:
+                task: None
+
 tasks:
     robot:
         options:
